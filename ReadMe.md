@@ -1,1 +1,1 @@
-# Print-It WebSite v.1
+Projet 5 de la formation d'intégrateur web OpenClassrooms
