@@ -1,58 +1,72 @@
 const slides = [
-	{
-		"image":"slide1.jpg",
-		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
-	},
-	{
-		"image":"slide2.jpg",
-		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
-	},
-	{
-		"image":"slide3.jpg",
-		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
-	},
-	{
-		"image":"slide4.png",
-		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
-	}
-]
+  {
+    image: "slide1.jpg",
+    tagLine: "Impressions tous formats <span>en boutique et en ligne</span>",
+  },
+  {
+    image: "slide2.jpg",
+    tagLine:
+      "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
+  },
+  {
+    image: "slide3.jpg",
+    tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
+  },
+  {
+    image: "slide4.png",
+    tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
+  },
+];
+
+const dotsDiv = document.querySelector(".dots");
+const bannerImg = document.querySelector(".banner-img");
+const p = document.querySelector("#banner p");
+
+let index = 0;
+
 // EVENT LISTENER SUR LES FLECHES //
 
-let arrowLeft = document.querySelector(".arrow_left")
+let arrowLeft = document.querySelector(".arrow_left");
 
 arrowLeft.addEventListener("click", () => {
-	console.log("Clique sur la flèche gauche");
-})
+  index--;
+  if (index < 0) {
+    index = slides.length - 1;
+  }
+  createBulletPoints();
+  updateData();
+});
 
-let arrowRight = document.querySelector(".arrow_right")
+let arrowRight = document.querySelector(".arrow_right");
 
 arrowRight.addEventListener("click", () => {
-	console.log("Clique sur la flèche droite");
-})
+  index++;
+  if (index > slides.length - 1) {
+    index = 0;
+  }
+  createBulletPoints();
+  updateData();
+});
 
-
-// Ajout des bullet points //
-
-// const bulletPoints = `
-// 	<div class="dot">.</div>
-// 	<div class="dot">.</div>
-// 	<div class="dot">.</div>
-// 	<div class="dot">.</div>
-// `
-
-// document.querySelector(".dots").innerHTML = bulletPoints;
-
-function createBulletPoints () {
-
-	for (let i = 0; i < slides.length; i++) {
-
-		let bulletPoints = document.createElement("div");
-		bulletPoints.textContent=".";
-		bulletPoints.classList.add("dot");
-		const dotsDiv = document.querySelector(".dots")
-		dotsDiv.appendChild(bulletPoints);
-		}
+//////////////////////// AJOUT DES BULLET POINTS ////////////////////////
+function createBulletPoints() {
+  dotsDiv.innerHTML = "";
+  for (let i = 0; i < slides.length; i++) {
+    let bulletPoints = document.createElement("div");
+    if (index === i) {
+      bulletPoints.className = "dot_selected dot";
+    } else {
+      bulletPoints.className = "dot";
+    }
+    dotsDiv.appendChild(bulletPoints);
+  }
 }
 
-createBulletPoints ()
+createBulletPoints();
+
+const updateData = () => {
+  // bannerImg.src = "./assets/images/slideshow/" + slides[index].image;
+  bannerImg.src = `./assets/images/slideshow/${slides[index].image}` 
+  p.innerHTML = slides[index].tagLine;
+};
 
