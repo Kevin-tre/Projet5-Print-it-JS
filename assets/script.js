@@ -24,7 +24,7 @@ const p = document.querySelector("#banner p");
 
 let index = 0;
 
-// EVENT LISTENER SUR LES FLECHES //
+// EVENT LISTENER SUR LES FLECHES + DEFILEMENT INFINI //
 
 let arrowLeft = document.querySelector(".arrow_left");
 
@@ -63,6 +63,9 @@ function createBulletPoints() {
 }
 
 createBulletPoints();
+
+
+//////////////////////// MISE A JOUR IMAGE ET DESCRIPTION  ////////////////////////
 
 const updateData = () => {
   // bannerImg.src = "./assets/images/slideshow/" + slides[index].image;
